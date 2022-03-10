@@ -1081,26 +1081,27 @@ def fitness(x):
     return (x[:, :4] * w).sum(1)
 
 
-def output_to_target(output, width, height):
+def output_to_target(output):
     # Convert model output to target format [batch_id, class_id, x, y, w, h, conf]
     if isinstance(output, torch.Tensor):
-        output = output.cpu().numpy()
+        output = output.detach().numpy()
 
     targets = []
     for i, o in enumerate(output):
         if o is not None:
             for pred in o:
                 box = pred[:4]
-                w = (box[2] - box[0]) / width
-                h = (box[3] - box[1]) / height
-                x = box[0] / width + w / 2
-                y = box[1] / height + h / 2
-                conf = pred[4]
+                w = float((box[2] - box[0]) )
+                h = float((box[3] - box[1]) )
+                x = float(box[0] + w / 2)
+                y = float(box[1] + h / 2)
+                conf = float(pred[4])
                 cls = int(pred[5])
 
                 targets.append([i, cls, x, y, w, h, conf])
 
     return np.array(targets)
+    #return np.array([target.detatch().numpy() for target in targets])
 
 
 def increment_dir(dir, comment=''):
