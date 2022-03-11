@@ -1,0 +1,12 @@
+git+https://github.com/aschenbecherwespe/mish-cuda-dummy
+numpy==1.21.2
+opencv-python==4.5.5.62
+wheel==0.37.1
+scikit_image==0.19.1
+tensorboard==2.8.0
+tqdm==4.63.0
+matplotlib==3.5.1
+torch==1.10.2
+torchvision==0.11.3
+torchaudio==0.10.2
+pyyaml==6.0
