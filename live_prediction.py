@@ -31,7 +31,7 @@ contiguous = np.ascontiguousarray(transposed)
 torch_img = torch.from_numpy(contiguous).to('cpu')
 torch_float = torch_img.float()
 torch_normalized = torch_float / 255.0
-unsqueezed = torch_float.unsqueeze(0)
+unsqueezed = torch_normalized.unsqueeze(0)
 
 # get a prediction
 start = time.perf_counter()
