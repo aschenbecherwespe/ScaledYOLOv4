@@ -35,3 +35,8 @@ output = output_to_target(non_maxed)[:1]
 print(f"top prediction: {output}")
 result = plot_images_new([torch_normalized], [output])
 
+cv2.namedWindow("prediction")
+cv2.imshow("prediction", result)
+cv2.waitKey(0)
+cv2.destroyWindow("prediction")
+
